@@ -1,5 +1,5 @@
 <x-app-layout>
-    <!-- ... le reste de votre code ... -->
+    @section('title', 'Accueil')
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -9,7 +9,7 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide flex flex-col sm:flex-row">
                                 <div class="w-full sm:w-1/2">
-                                    <img src="{{url('/img/boisdargent.png')}}" alt="logo" class="h-96 mt-10 mx-auto sm:ml-0 sm:mr-auto" />
+                                    <img src="{{url('/img/boisdargent.png')}}" alt="image du parfum bois d'argent" class="h-96 mt-10 mx-auto sm:ml-0 sm:mr-auto" />
                                 </div>
                                 <div class="w-full sm:w-1/2 p-4">
                                     <p class="font-bold text-center sm:text-left">Bienvenue dans mon univers passionné dédié aux parfums de niche et aux collections privées. Je suis Ahmed, un amoureux des fragrances raffinées, âgé de 30 ans. Mon voyage dans le monde des parfums d'exception a commencé en 2014, lorsque j'ai acquis mon tout premier trésor olfactif, le légendaire Bois d'Argent de Dior. Cet instant a marqué le début d'une quête envoûtante.</p>

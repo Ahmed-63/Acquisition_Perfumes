@@ -43,8 +43,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
         
-        $comments = $post->comments; // Récupérer les commentaires associés à l'article
-        return view('posts.show', compact('post', 'comments')); // Passer la variable $comments à la vue
+        $comments = $post->comments; 
+        return view('posts.show', compact('post', 'comments')); 
     }
 
     public function edit(Post $post)

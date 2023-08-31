@@ -31,11 +31,8 @@
                     {{-- <x-nav-link :href="route('comments.index')" :active="request()->routeIs('comments.index')">            
                         {{ __('Comments') }}                                                                                                                                  
                     </x-nav-link> --}}
-
-
                 </div>
             </div>
-
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
@@ -78,26 +75,26 @@
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();"
-                                    aria-label="">
+                                    aria-label="Se Connecter">
                                     {{ __('Se connecter') }}
-                                </x-dropdown-link>
+                                </x-dropdown-link>/
                             </form>
                         @endguest
 
 
                         @auth
-                            <form method="POST" action="{{ route('logout') }}" aria-label="">
+                            <form method="POST" action="{{ route('logout') }}" aria-label="Se Deconnecter">
                                 @csrf
-                                <button type="submit">{{ __('Se dÃ©connecter') }}</button>
+                                <button type="submit">{{ __('Se deconnecter') }}</button>
                             </form>
                         @endauth
                     </x-slot>
                 </x-dropdown>
             </div>
 
-            <!-- Hamburger -->
+            <!-- Hamburger (Mobile) - Placé à droite -->
             <div class="-mr-2 flex items-center sm:hidden">
-                <button @click="open = ! open"
+                <button @click="open = !open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
@@ -110,4 +107,53 @@
             </div>
         </div>
     </div>
+
+    <!-- Mobile Menu (Displayed when the burger button is clicked) -->
+<div :class="{ 'block': open, 'hidden': !open }" class="sm:hidden">
+    <div class="pt-2 pb-3 space-y-1 flex flex-col items-start"> <!-- Menu vertical aligné à droite -->
+        <!-- Navigation Links -->
+        <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+            {{ __('Accueil') }}
+        </x-nav-link>
+        <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+            {{ __('Parfums Acquis') }}
+        </x-nav-link>
+        @auth
+            @if (auth()->user()->Admin == 1)
+                <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
+                    {{ __('Ajouter une acquisition') }}
+                </x-nav-link>
+            @endif
+        @endauth
+        <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
+            {{ __('Contact') }}
+        </x-nav-link>
+
+        <!-- Authentication Links -->
+        @guest
+            <x-nav-link aria-label="onglet inscription">
+                <a href="{{ route('register') }}" class="text-indigo-900 text-sm ml-4 font-bold">Inscription</a>
+            </x-nav-link>
+        @endguest
+
+        <form method="POST" action="{{ route('logout') }}" aria-label="">
+            @csrf
+            @guest
+                <x-nav-link :href="route('logout')"
+                    onclick="event.preventDefault();
+                                this.closest('form').submit();"
+                    aria-label="">
+                    {{ __('Se connecter') }}
+                </x-nav-link>
+            @endguest
+
+            @auth
+                <button class=" text-red-800 font-bold text-sm p-2 ml-3" type="submit">{{ __('Se deconnecter') }}</button>
+            @endauth
+        </form>
+    </div>
+</div>
+
+
+
 </nav>

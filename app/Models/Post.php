@@ -21,7 +21,7 @@ class Post extends Model
         {
             $latestPosts = Post::latest()->take(3)->get();
     
-            return view('dashboard', compact('latestPosts'));
+            return view('home', compact('latestPosts'));
         }
 
     public function comments(): HasMany

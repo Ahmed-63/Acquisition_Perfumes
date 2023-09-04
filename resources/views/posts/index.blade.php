@@ -9,7 +9,7 @@
                 <div class="p-6 text-gray-900">
                     <h1 class="text-center font-extrabold">Liste des Parfums</h1>
                     @auth
-                    @if(auth()->user()->Admin==1)
+                    @if(auth()->user()->admin==1)
                     <div class="m-2 mb-10">
                         <!-- Lien pour créer un nouvel article : "posts.create" -->
                         <a href="{{ route('posts.create') }}" title="Créer un article"><x-primary-button class="mt-4">{{ __('Nouvelle Acquisition') }}</x-primary-button></a>
@@ -28,7 +28,7 @@
                                     <a href="{{ route('posts.show', $post) }}" class="text-blue-500"
                                         title="Lire l'article"><x-primary-button class="mt-4">{{ __('Voir') }}</x-primary-button></a>
                                 @auth
-                                @if(auth()->user()->Admin==1)
+                                @if(auth()->user()->admin==1)
                                     <a href="{{ route('posts.edit', $post) }}" class="text-yellow-500 ml-2"
                                         title="Modifier l'article"><x-primary-button class="mt-4">{{ __('Modifier') }}</x-primary-button></a>
                                     <form method="POST" action="{{ route('posts.destroy', $post) }}"

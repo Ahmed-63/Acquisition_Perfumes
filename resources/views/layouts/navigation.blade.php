@@ -19,7 +19,7 @@
                         {{ __('Parfums Acquis') }}
                     </x-nav-link>
                     @auth
-                        @if (auth()->user()->Admin == 1)
+                        @if (auth()->user()->admin == 1)
                             <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
                                 {{ __('Ajouter une acquisition') }}
                             </x-nav-link>
@@ -120,7 +120,7 @@
             {{ __('Parfums Acquis') }}
         </x-nav-link>
         @auth
-            @if (auth()->user()->Admin == 1)
+            @if (auth()->user()->admin == 1)
                 <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
                     {{ __('Ajouter une acquisition') }}
                 </x-nav-link>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+
     public function index()
     {
         $posts = Post::latest()->get();
@@ -91,6 +92,6 @@ class PostController extends Controller
 
         return view('home', compact('latestPosts'));
     }
-    
+ 
 }
 

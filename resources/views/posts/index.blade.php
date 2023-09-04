@@ -1,6 +1,7 @@
 <x-app-layout>
 
     @section('title', 'Parfums')
+    @section('meta_description', "")
     
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

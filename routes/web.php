@@ -20,9 +20,7 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
+
 
 
 Route::get('/home', [PostController::class, 'showPresentationPage'])->name('home');
@@ -31,7 +29,7 @@ Route::get('/', [PostController::class, 'showPresentationPage'])->name('home');
 
 Route::resource('posts', PostController::class)
 ->only(['create', 'store', 'edit', 'update','destroy'])
-->middleware(['auth', 'verified']);
+->middleware(['auth', 'verified', 'admin']);
 
 Route::resource('posts', PostController::class)
 ->only(['index' ,'show']);
@@ -43,7 +41,7 @@ Route::resource('comments', CommentController::class)
 
 Route::get('/contact', function () {
     return view('contact');
-})->middleware(['auth', 'verified'])->name('contact');
+});
 
 
 Route::middleware('auth')->group(function () {

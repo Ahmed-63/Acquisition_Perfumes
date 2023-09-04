@@ -25,14 +25,13 @@
                             </x-nav-link>
                         @endif
                     @endauth
-                    <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
+                    <x-nav-link :href="url('contact')" :active="request()->routeIs('contact')">
                         {{ __('Contact') }}
                     </x-nav-link>
-                    {{-- <x-nav-link :href="route('comments.index')" :active="request()->routeIs('comments.index')">            
-                        {{ __('Comments') }}                                                                                                                                  
-                    </x-nav-link> --}}
+
                 </div>
             </div>
+            <div></div>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
@@ -42,7 +41,11 @@
                             @auth
                                 <div>{{ Auth::user()->name }}</div>
                             @endauth
-                            <div class="ml-1">
+                            <div class="ml-1 flex">                       
+                                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                        
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
@@ -60,12 +63,10 @@
                             </x-dropdown-link>
                         @endauth
                         @guest
-                            <x-dropdown-link aria-label="onglet inscription">
-                                <a href="{{ route('register') }}"
-                                    class="ml-4 font-semibold text-gray-600 
-                        hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm 
-                        focus:outline-red-500">S'inscrire</a>
-                            </x-dropdown-link>
+                        <x-dropdown-link aria-label="onglet inscription">
+                            <a href="{{ route('register') }}"
+                                class="bg-indigo-500 ml-2 text-white p-1 pr-4 pl-4 rounded-lg font-bold">{{ __('Inscription') }}</a>
+                        </x-dropdown-link>
                         @endguest
 
                         <!-- Authentication -->
@@ -75,9 +76,9 @@
                                 <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();"
-                                    aria-label="Se Connecter">
+                                    aria-label="Se Connecter" class="">
                                     {{ __('Se connecter') }}
-                                </x-dropdown-link>/
+                                </x-dropdown-link>
                             </form>
                         @endguest
 
@@ -85,7 +86,7 @@
                         @auth
                             <form method="POST" action="{{ route('logout') }}" aria-label="Se Deconnecter">
                                 @csrf
-                                <button type="submit">{{ __('Se deconnecter') }}</button>
+                                <button class="bg-red-500 hover:text-red-400 ml-2 text-white p-1 pr-4 pl-4 rounded-lg font-bold" type="submit">{{ __('Se deconnecter') }}</button>
                             </form>
                         @endauth
                     </x-slot>
@@ -125,14 +126,15 @@
                 </x-nav-link>
             @endif
         @endauth
-        <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
+        <x-nav-link :href="url('contact')" :active="request()->routeIs('contact')">
             {{ __('Contact') }}
         </x-nav-link>
+
 
         <!-- Authentication Links -->
         @guest
             <x-nav-link aria-label="onglet inscription">
-                <a href="{{ route('register') }}" class="text-indigo-900 text-sm ml-4 font-bold">Inscription</a>
+                <a href="{{ route('register') }}" class="bg-indigo-500 ml-2 text-white p-1 pr-4 pl-4 rounded-lg font-bold">Inscription</a>
             </x-nav-link>
         @endguest
 
@@ -142,13 +144,13 @@
                 <x-nav-link :href="route('logout')"
                     onclick="event.preventDefault();
                                 this.closest('form').submit();"
-                    aria-label="">
+                    aria-label="" class="bg-indigo-900 ml-2 text-white p-1 pr-4 pl-4 rounded-lg font-bold">
                     {{ __('Se connecter') }}
                 </x-nav-link>
             @endguest
 
             @auth
-                <button class=" text-red-800 font-bold text-sm p-2 ml-3" type="submit">{{ __('Se deconnecter') }}</button>
+                <button class=" bg-red-500 hover:text-red-300 ml-2 text-white p-1 pr-4 pl-4 rounded-lg font-bold " type="submit">{{ __('Se deconnecter') }}</button>
             @endauth
         </form>
     </div>
